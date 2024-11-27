@@ -1,7 +1,7 @@
 package ec.com.eeasa.sisai.features.rol_permiso.mappers;
 
-import ec.com.eeasa.sisai.features.permisos.PermisoService;
 import ec.com.eeasa.sisai.features.permisos.mappers.PermisoMapper;
+import ec.com.eeasa.sisai.features.permisos.services.impl.PermisoServiceImpl;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.ActualizarRolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.CrearRolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.RolPermisoDto;
@@ -18,10 +18,11 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-public class RolPermisoMapper implements Mapper<RolPermiso, RolPermisoDto, CrearRolPermisoDto, ActualizarRolPermisoDto> {
+public class RolPermisoMapper
+        implements Mapper<RolPermiso, RolPermisoDto, CrearRolPermisoDto, ActualizarRolPermisoDto> {
 
     private final RolService rolService;
-    private final PermisoService permisoService;
+    private final PermisoServiceImpl permisoService;
     private final RolMapper rolMapper;
     private final PermisoMapper permisoMapper;
 
@@ -51,9 +52,10 @@ public class RolPermisoMapper implements Mapper<RolPermiso, RolPermisoDto, Crear
     }
 
     @Override
-    public void updateEntity(RolPermiso rolPermiso, ActualizarRolPermisoDto actualizarRolPermisoDto) {}
+    public void updateEntity(RolPermiso rolPermiso, ActualizarRolPermisoDto actualizarRolPermisoDto) {
+    }
 
-    public  void updateEntity(List<RolPermiso> rolPermisos, ActualizarRolPermisoDto actualizarRolPermisoDto) {
+    public void updateEntity(List<RolPermiso> rolPermisos, ActualizarRolPermisoDto actualizarRolPermisoDto) {
         for (RolPermiso rolPermiso : rolPermisos) {
             rolPermiso.setRol(rolService.encontrarPorIdEntity(actualizarRolPermisoDto.getRolId()));
         }

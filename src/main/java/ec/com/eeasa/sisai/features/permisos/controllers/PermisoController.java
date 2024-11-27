@@ -1,9 +1,10 @@
-package ec.com.eeasa.sisai.features.permisos;
+package ec.com.eeasa.sisai.features.permisos.controllers;
 
 import ec.com.eeasa.sisai.features.permisos.dtos.CrearPermisoDto;
 import ec.com.eeasa.sisai.features.permisos.dtos.FiltroPermisoDto;
 import ec.com.eeasa.sisai.features.permisos.dtos.PermisoDto;
 import ec.com.eeasa.sisai.features.permisos.dtos.ActualizarPermisoDto;
+import ec.com.eeasa.sisai.features.permisos.services.PermisoService;
 import ec.com.eeasa.sisai.shared.respuesta.GeneradorRespuesta;
 import ec.com.eeasa.sisai.shared.respuesta.RespuestaGenerica;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,8 +33,8 @@ public class PermisoController {
         @GetMapping
         @Operation(summary = "Listar permisos", description = "Obtiene todos los permisos registrados en el sistema")
         public ResponseEntity<RespuestaGenerica<PermisoDto>> getAll(
-                        @ParameterObject FiltroPermisoDto filtroPermisoDto) {
-                Page<PermisoDto> permisos = permisoService.encontrarTodos(filtroPermisoDto);
+                        @ParameterObject FiltroPermisoDto filtro) {
+                Page<PermisoDto> permisos = permisoService.encontrarTodos(filtro);
                 return generadorRespuesta.buildPagedResponse(
                                 permisos,
                                 "Permisos obtenidos correctamente");
@@ -53,9 +54,9 @@ public class PermisoController {
         @PostMapping
         @Operation(summary = "Crear permiso", description = "Crea un nuevo permiso en el sistema")
         public ResponseEntity<RespuestaGenerica<PermisoDto>> create(
-                        @Valid @RequestBody CrearPermisoDto permiso) {
+                        @Valid @RequestBody CrearPermisoDto crear) {
                 return generadorRespuesta.buildResponse(
-                                permisoService.crear(permiso),
+                                permisoService.crear(crear),
                                 HttpStatus.CREATED.value(),
                                 "Permiso creado correctamente");
         }
@@ -64,9 +65,9 @@ public class PermisoController {
         @Operation(summary = "Actualizar permiso", description = "Actualiza un permiso existente por su ID")
         public ResponseEntity<RespuestaGenerica<PermisoDto>> update(
                         @Parameter(description = "ID del permiso", required = true) @PathVariable("id") Long id,
-                        @RequestBody @Valid ActualizarPermisoDto permiso) {
+                        @RequestBody @Valid ActualizarPermisoDto actualizar) {
                 return generadorRespuesta.buildResponse(
-                                permisoService.actualizar(id, permiso),
+                                permisoService.actualizar(id, actualizar),
                                 HttpStatus.OK.value(),
                                 "Permiso actualizado correctamente");
         }

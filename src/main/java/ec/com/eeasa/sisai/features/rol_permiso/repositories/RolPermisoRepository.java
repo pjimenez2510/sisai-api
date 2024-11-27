@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.features.rol_permiso;
+package ec.com.eeasa.sisai.features.rol_permiso.repositories;
 
 import ec.com.eeasa.sisai.features.rol_permiso.entities.RolPermiso;
 import org.springframework.data.jpa.repository.JpaRepository;

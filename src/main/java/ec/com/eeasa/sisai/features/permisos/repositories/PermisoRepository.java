@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.features.permisos;
+package ec.com.eeasa.sisai.features.permisos.repositories;
 
 import ec.com.eeasa.sisai.features.permisos.entities.Permiso;
 import org.springframework.data.jpa.repository.JpaRepository;

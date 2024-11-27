@@ -1,5 +1,6 @@
-package ec.com.eeasa.sisai.features.usuarios;
+package ec.com.eeasa.sisai.features.usuarios.controllers;
 
+import ec.com.eeasa.sisai.features.usuarios.services.UsuarioService;
 import ec.com.eeasa.sisai.features.usuarios.dtos.ActualizarUsuarioDto;
 import ec.com.eeasa.sisai.features.usuarios.dtos.CrearUsuarioDto;
 import ec.com.eeasa.sisai.features.usuarios.dtos.FiltroUsuarioDto;

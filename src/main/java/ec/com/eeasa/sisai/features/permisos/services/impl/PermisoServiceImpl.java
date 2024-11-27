@@ -1,5 +1,7 @@
-package ec.com.eeasa.sisai.features.permisos;
+package ec.com.eeasa.sisai.features.permisos.services.impl;
 
+import ec.com.eeasa.sisai.features.permisos.repositories.PermisoRepository;
+import ec.com.eeasa.sisai.features.permisos.services.PermisoService;
 import ec.com.eeasa.sisai.features.permisos.dtos.CrearPermisoDto;
 import ec.com.eeasa.sisai.features.permisos.dtos.FiltroPermisoDto;
 import ec.com.eeasa.sisai.features.permisos.dtos.PermisoDto;
@@ -17,34 +19,39 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
-public class PermisoService {
+public class PermisoServiceImpl implements PermisoService {
 
     private final PermisoRepository permisoRepository;
     private final PermisoMapper permisoMapper;
 
+    @Override
     @Transactional(readOnly = true)
     public Page<PermisoDto> encontrarTodos(FiltroPermisoDto filtro) {
         Specification<Permiso> spec = new EspecificacionPermiso(filtro);
         return permisoRepository.findAll(spec, PaginacionUtils.crearPageRequest(filtro)).map(permisoMapper::toDTO);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PermisoDto encontrarPorId(Long id) {
         return permisoMapper.toDTO(encontrarPorIdEntity(id));
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Permiso encontrarPorIdEntity(Long id) {
         return permisoRepository.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontrado("Permiso", "id", id.toString()));
     }
 
+    @Override
     @Transactional
     public PermisoDto crear(CrearPermisoDto crearPermisoDto) {
         Permiso permiso = permisoMapper.toEntity(crearPermisoDto);
         return permisoMapper.toDTO(permisoRepository.save(permiso));
     }
 
+    @Override
     @Transactional
     public PermisoDto actualizar(Long id, ActualizarPermisoDto actualizarPermisoDto) {
         Permiso permiso = encontrarPorIdEntity(id);
@@ -52,10 +59,12 @@ public class PermisoService {
         return permisoMapper.toDTO(permisoRepository.save(permiso));
     }
 
+    @Override
     @Transactional
     public boolean eliminar(Long id) {
         Permiso permiso = encontrarPorIdEntity(id);
         permisoRepository.delete(permiso);
         return true;
     }
+
 }

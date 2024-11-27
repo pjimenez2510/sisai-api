@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.features.usuarios;
+package ec.com.eeasa.sisai.features.usuarios.repositories;
 
 import ec.com.eeasa.sisai.features.usuarios.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

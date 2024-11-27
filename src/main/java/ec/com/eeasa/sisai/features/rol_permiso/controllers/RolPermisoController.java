@@ -1,9 +1,10 @@
-package ec.com.eeasa.sisai.features.rol_permiso;
+package ec.com.eeasa.sisai.features.rol_permiso.controllers;
 
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.ActualizarRolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.CrearRolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.FiltroRolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.RolPermisoDto;
+import ec.com.eeasa.sisai.features.rol_permiso.services.RolPermisoService;
 import ec.com.eeasa.sisai.shared.respuesta.GeneradorRespuesta;
 import ec.com.eeasa.sisai.shared.respuesta.RespuestaGenerica;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,8 +34,8 @@ public class RolPermisoController {
         @GetMapping
         @Operation(summary = "Listar Roles - Permisos", description = "Obtiene todos los Rol - Permisos registrados en el sistema")
         public ResponseEntity<RespuestaGenerica<RolPermisoDto>> getAll(
-                        @ParameterObject FiltroRolPermisoDto filtroRolPermisoDto) {
-                Page<RolPermisoDto> rolPermisoDtos = rolPermisoService.encontrarTodos(filtroRolPermisoDto);
+                        @ParameterObject FiltroRolPermisoDto filtro) {
+                Page<RolPermisoDto> rolPermisoDtos = rolPermisoService.encontrarTodos(filtro);
                 return generadorRespuesta.buildPagedResponse(
                                 rolPermisoDtos,
                                 "Roles - Permisos obtenidos correctamente");
@@ -53,9 +54,9 @@ public class RolPermisoController {
         @PostMapping
         @Operation(summary = "Crear Rol - Permiso", description = "Crea un nuevo Rol - Permiso en el sistema")
         public ResponseEntity<RespuestaGenerica<List<RolPermisoDto>>> create(
-                        @Valid @RequestBody CrearRolPermisoDto crearRolPermisoDto) {
+                        @Valid @RequestBody CrearRolPermisoDto crear) {
                 return generadorRespuesta.buildResponse(
-                                rolPermisoService.crear(crearRolPermisoDto),
+                                rolPermisoService.crear(crear),
                                 HttpStatus.CREATED.value(),
                                 "Rol - Permiso creado correctamente");
         }
@@ -63,9 +64,9 @@ public class RolPermisoController {
         @PutMapping
         @Operation(summary = "Actualizar Rol - Permiso", description = "Actualiza un Rol - Permiso existente por su ID")
         public ResponseEntity<RespuestaGenerica<List<RolPermisoDto>>> update(
-                        @RequestBody @Valid ActualizarRolPermisoDto usuarioDto) {
+                        @RequestBody @Valid ActualizarRolPermisoDto actualizar) {
                 return generadorRespuesta.buildResponse(
-                                rolPermisoService.actualizar(usuarioDto),
+                                rolPermisoService.actualizar(actualizar),
                                 HttpStatus.OK.value(),
                                 "Rol - Permiso actualizado correctamente");
         }
