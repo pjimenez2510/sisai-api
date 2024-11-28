@@ -50,22 +50,22 @@ public class RolPermisoServiceImpl implements RolPermisoService {
 
     @Override
     @Transactional
-    public List<RolPermisoDto> crear(CrearRolPermisoDto crear) {
-        List<RolPermiso> rolPermisos = rolPermisoMapper.toEntity(crear.getPermisoIds(),
-                crear.getRolId());
+    public List<RolPermisoDto> crear(CrearRolPermisoDto dto) {
+        List<RolPermiso> rolPermisos = rolPermisoMapper.toEntity(dto.getRolPermisoIds(),
+                dto.getRolId());
         return rolPermisoRepository.saveAll(rolPermisos).stream().map(rolPermisoMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     @Transactional
-    public List<RolPermisoDto> actualizar(ActualizarRolPermisoDto actualizar) {
-        List<RolPermiso> rolPermisos = rolPermisoRepository.findAllById(actualizar.getRolPermisoIds());
+    public List<RolPermisoDto> actualizar(ActualizarRolPermisoDto dto) {
+        List<RolPermiso> rolPermisos = rolPermisoRepository.findAllById(dto.getRolPermisoIds());
         if (rolPermisos.isEmpty()) {
             throw new RecursoNoEncontrado(
-                    "Roles - Permisos", "id", actualizar.getRolPermisoIds().toString());
+                    "Roles - Permisos", "id", dto.getRolPermisoIds().toString());
         }
-        rolPermisoMapper.updateEntity(rolPermisos, actualizar);
+        rolPermisoMapper.updateEntity(rolPermisos, dto);
         return rolPermisoRepository.saveAll(rolPermisos).stream().map(rolPermisoMapper::toDTO)
                 .collect(Collectors.toList());
     }

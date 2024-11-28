@@ -54,9 +54,9 @@ public class PermisoController {
         @PostMapping
         @Operation(summary = "Crear permiso", description = "Crea un nuevo permiso en el sistema")
         public ResponseEntity<RespuestaGenerica<PermisoDto>> create(
-                        @Valid @RequestBody CrearPermisoDto crear) {
+                        @Valid @RequestBody CrearPermisoDto dto) {
                 return generadorRespuesta.buildResponse(
-                                permisoService.crear(crear),
+                                permisoService.crear(dto),
                                 HttpStatus.CREATED.value(),
                                 "Permiso creado correctamente");
         }
@@ -65,9 +65,9 @@ public class PermisoController {
         @Operation(summary = "Actualizar permiso", description = "Actualiza un permiso existente por su ID")
         public ResponseEntity<RespuestaGenerica<PermisoDto>> update(
                         @Parameter(description = "ID del permiso", required = true) @PathVariable("id") Long id,
-                        @RequestBody @Valid ActualizarPermisoDto actualizar) {
+                        @RequestBody @Valid ActualizarPermisoDto dto) {
                 return generadorRespuesta.buildResponse(
-                                permisoService.actualizar(id, actualizar),
+                                permisoService.actualizar(id, dto),
                                 HttpStatus.OK.value(),
                                 "Permiso actualizado correctamente");
         }

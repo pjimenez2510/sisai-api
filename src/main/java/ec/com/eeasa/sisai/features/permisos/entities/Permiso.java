@@ -1,10 +1,13 @@
 package ec.com.eeasa.sisai.features.permisos.entities;
 
+import ec.com.eeasa.sisai.features.rol_permiso.entities.RolPermiso;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -40,5 +43,8 @@ public class Permiso {
 
     @Column(name = "DUPER_FECHA_MODIFICACION")
     private Instant fechaModificacion;
+
+    @OneToMany(mappedBy = "permiso")
+    private Set<RolPermiso> rolPermisos = new LinkedHashSet<>();
 
 }

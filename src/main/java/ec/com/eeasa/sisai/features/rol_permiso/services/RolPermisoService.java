@@ -17,9 +17,9 @@ public interface RolPermisoService {
 
     RolPermiso encontrarPorIdEntity(Long id);
 
-    List<RolPermisoDto> crear(CrearRolPermisoDto crear);
+    List<RolPermisoDto> crear(CrearRolPermisoDto dto);
 
-    List<RolPermisoDto> actualizar(ActualizarRolPermisoDto actualizar);
+    List<RolPermisoDto> actualizar(ActualizarRolPermisoDto dto);
 
     boolean eliminar(Long id);
 }

@@ -46,16 +46,16 @@ public class PermisoServiceImpl implements PermisoService {
 
     @Override
     @Transactional
-    public PermisoDto crear(CrearPermisoDto crearPermisoDto) {
-        Permiso permiso = permisoMapper.toEntity(crearPermisoDto);
+    public PermisoDto crear(CrearPermisoDto dto) {
+        Permiso permiso = permisoMapper.toEntity(dto);
         return permisoMapper.toDTO(permisoRepository.save(permiso));
     }
 
     @Override
     @Transactional
-    public PermisoDto actualizar(Long id, ActualizarPermisoDto actualizarPermisoDto) {
+    public PermisoDto actualizar(Long id, ActualizarPermisoDto dto) {
         Permiso permiso = encontrarPorIdEntity(id);
-        permisoMapper.updateEntity(permiso, actualizarPermisoDto);
+        permisoMapper.updateEntity(permiso, dto);
         return permisoMapper.toDTO(permisoRepository.save(permiso));
     }
 

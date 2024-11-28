@@ -8,6 +8,7 @@ import ec.com.eeasa.sisai.shared.interfaces.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -30,13 +31,12 @@ public class RolMapper implements Mapper<Rol, RolDto, CrearRolDto, ActualizarRol
 
     @Override
     public void updateEntity(Rol rol, ActualizarRolDto actualizarRolDto) {
-        rol.setDescripcion(actualizarRolDto.getDescripcion());
+        Optional.ofNullable(actualizarRolDto.getDescripcion()).ifPresent(rol::setDescripcion);
     }
 
     @Override
     public List<RolDto> toDTOList(List<Rol> roles) {
         return roles.stream().map(this::toDTO).collect(Collectors.toList());
     }
-
 
 }

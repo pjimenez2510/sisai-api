@@ -54,9 +54,9 @@ public class RolPermisoController {
         @PostMapping
         @Operation(summary = "Crear Rol - Permiso", description = "Crea un nuevo Rol - Permiso en el sistema")
         public ResponseEntity<RespuestaGenerica<List<RolPermisoDto>>> create(
-                        @Valid @RequestBody CrearRolPermisoDto crear) {
+                        @Valid @RequestBody CrearRolPermisoDto dto) {
                 return generadorRespuesta.buildResponse(
-                                rolPermisoService.crear(crear),
+                                rolPermisoService.crear(dto),
                                 HttpStatus.CREATED.value(),
                                 "Rol - Permiso creado correctamente");
         }
@@ -64,9 +64,9 @@ public class RolPermisoController {
         @PutMapping
         @Operation(summary = "Actualizar Rol - Permiso", description = "Actualiza un Rol - Permiso existente por su ID")
         public ResponseEntity<RespuestaGenerica<List<RolPermisoDto>>> update(
-                        @RequestBody @Valid ActualizarRolPermisoDto actualizar) {
+                        @RequestBody @Valid ActualizarRolPermisoDto dto) {
                 return generadorRespuesta.buildResponse(
-                                rolPermisoService.actualizar(actualizar),
+                                rolPermisoService.actualizar(dto),
                                 HttpStatus.OK.value(),
                                 "Rol - Permiso actualizado correctamente");
         }

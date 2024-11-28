@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.features.roles;
+package ec.com.eeasa.sisai.features.roles.repositories;
 
 import ec.com.eeasa.sisai.features.roles.entities.Rol;
 import org.springframework.data.jpa.repository.JpaRepository;

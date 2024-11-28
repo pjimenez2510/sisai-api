@@ -46,16 +46,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public UsuarioDto crear(CrearUsuarioDto crearUsuarioDto) {
-        Usuario usuario = usuarioMapper.toEntity(crearUsuarioDto);
+    public UsuarioDto crear(CrearUsuarioDto dto) {
+        Usuario usuario = usuarioMapper.toEntity(dto);
         return usuarioMapper.toDTO(usuarioRepository.save(usuario));
     }
 
     @Override
     @Transactional
-    public UsuarioDto actualizar(Long id, ActualizarUsuarioDto actualizarUsuarioDto) {
+    public UsuarioDto actualizar(Long id, ActualizarUsuarioDto dto) {
         Usuario usuario = encontrarPorIdEntity(id);
-        usuarioMapper.updateEntity(usuario, actualizarUsuarioDto);
+        usuarioMapper.updateEntity(usuario, dto);
         return usuarioMapper.toDTO(usuarioRepository.save(usuario));
     }
 

@@ -15,9 +15,9 @@ public interface PermisoService {
 
     public Permiso encontrarPorIdEntity(Long id);
 
-    public PermisoDto crear(CrearPermisoDto crearUsuarioDto);
+    public PermisoDto crear(CrearPermisoDto dto);
 
-    public PermisoDto actualizar(Long id, ActualizarPermisoDto actualizarUsuarioDto);
+    public PermisoDto actualizar(Long id, ActualizarPermisoDto dto);
 
     public boolean eliminar(Long id);
 }

@@ -1,6 +1,6 @@
 package ec.com.eeasa.sisai.features.usuarios.mappers;
 
-import ec.com.eeasa.sisai.features.roles.RolService;
+import ec.com.eeasa.sisai.features.roles.services.RolService;
 import ec.com.eeasa.sisai.features.roles.entities.Rol;
 import ec.com.eeasa.sisai.features.roles.mappers.RolMapper;
 import ec.com.eeasa.sisai.features.usuarios.dtos.ActualizarUsuarioDto;
@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -58,16 +59,15 @@ public class UsuarioMapper implements Mapper<Usuario, UsuarioDto, CrearUsuarioDt
     @Override
     public void updateEntity(Usuario usuario, ActualizarUsuarioDto actualizarUsuarioDto) {
         Rol rol = rolService.encontrarPorIdEntity(actualizarUsuarioDto.getRolId());
-
-        usuario.setNombres(actualizarUsuarioDto.getNombres());
-        usuario.setApellidos(actualizarUsuarioDto.getApellidos());
-        usuario.setCedula(actualizarUsuarioDto.getCedula());
-        usuario.setNombreUsuario(actualizarUsuarioDto.getNombreUsuario());
-        usuario.setEmail(actualizarUsuarioDto.getEmail());
-        usuario.setCodigoUnico(actualizarUsuarioDto.getCodigoUnico());
-        usuario.setSeccion(actualizarUsuarioDto.getSeccion());
-        usuario.setDepartamento(actualizarUsuarioDto.getDepartamento());
-        usuario.setRol(rol);
+        Optional.ofNullable(actualizarUsuarioDto.getNombres()).ifPresent(usuario::setNombres);
+        Optional.ofNullable(actualizarUsuarioDto.getApellidos()).ifPresent(usuario::setApellidos);
+        Optional.ofNullable(actualizarUsuarioDto.getCedula()).ifPresent(usuario::setCedula);
+        Optional.ofNullable(actualizarUsuarioDto.getNombreUsuario()).ifPresent(usuario::setNombreUsuario);
+        Optional.ofNullable(actualizarUsuarioDto.getEmail()).ifPresent(usuario::setEmail);
+        Optional.ofNullable(actualizarUsuarioDto.getCodigoUnico()).ifPresent(usuario::setCodigoUnico);
+        Optional.ofNullable(actualizarUsuarioDto.getSeccion()).ifPresent(usuario::setSeccion);
+        Optional.ofNullable(actualizarUsuarioDto.getDepartamento()).ifPresent(usuario::setDepartamento);
+        Optional.ofNullable(rol).ifPresent(usuario::setRol);
     }
 
     @Override

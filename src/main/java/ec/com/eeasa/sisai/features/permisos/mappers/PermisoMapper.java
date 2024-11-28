@@ -8,6 +8,7 @@ import ec.com.eeasa.sisai.shared.interfaces.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -34,9 +35,12 @@ public class PermisoMapper implements Mapper<Permiso, PermisoDto, CrearPermisoDt
 
     @Override
     public void updateEntity(Permiso permiso, ActualizarPermisoDto actualizarPermisoDto) {
-        permiso.setRecurso(actualizarPermisoDto.getRecurso());
-        permiso.setAccion(actualizarPermisoDto.getAccion());
-        permiso.setDescripcion(actualizarPermisoDto.getDescripcion());
+        Optional.ofNullable(actualizarPermisoDto.getRecurso())
+                .ifPresent(permiso::setRecurso);
+        Optional.ofNullable(actualizarPermisoDto.getAccion())
+                .ifPresent(permiso::setAccion);
+        Optional.ofNullable(actualizarPermisoDto.getDescripcion())
+                .ifPresent(permiso::setDescripcion);
     }
 
     @Override

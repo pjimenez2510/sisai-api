@@ -15,6 +15,7 @@ import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,60 +28,63 @@ import javax.validation.Valid;
 @Tag(name = "Usuarios", description = "API para gestionar los usuarios")
 public class UsuarioController {
 
+        private final UsuarioService usuarioService;
+        private final GeneradorRespuesta generadorRespuesta;
 
-    private final UsuarioService usuarioService;
-    private final GeneradorRespuesta generadorRespuesta;
+        @PreAuthorize("hasPermission('USUARIOS', 'LEER')")
+        @GetMapping
+        @Operation(summary = "Listar usuarios", description = "Obtiene todos los usuarios registrados en el sistema")
+        public ResponseEntity<RespuestaGenerica<UsuarioDto>> getAll(
+                        @ParameterObject FiltroUsuarioDto filtro) {
+                Page<UsuarioDto> usuarioDtos = usuarioService.encontrarTodos(filtro);
+                return generadorRespuesta.buildPagedResponse(
+                                usuarioDtos,
+                                "Usuarios obtenidos correctamente");
 
-    @GetMapping
-    @Operation(summary = "Listar usuarios", description = "Obtiene todos los usuarios registrados en el sistema")
-    public ResponseEntity<RespuestaGenerica<UsuarioDto>> getAll(
-            @ParameterObject FiltroUsuarioDto filtroRolDto) {
-        Page<UsuarioDto> usuarioDtos = usuarioService.encontrarTodos(filtroRolDto);
-        return generadorRespuesta.buildPagedResponse(
-                usuarioDtos,
-                "Usuarios obtenidos correctamente");
+        }
 
-    }
+        @PreAuthorize("hasPermission('USUARIOS', 'LEER')")
+        @GetMapping("/{id}")
+        @Operation(summary = "Obtener usuario por ID", description = "Obtiene un usuario específico por su identificador")
+        public ResponseEntity<RespuestaGenerica<UsuarioDto>> getById(
+                        @Parameter(description = "ID del usuario", required = true) @PathVariable("id") Long id) {
+                return generadorRespuesta.buildResponse(
+                                usuarioService.encontrarPorId(id),
+                                HttpStatus.OK.value(),
+                                "Usuario obtenido correctamente");
+        }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Obtener usuario por ID", description = "Obtiene un usuario específico por su identificador")
-    public ResponseEntity<RespuestaGenerica<UsuarioDto>> getById(
-            @Parameter(description = "ID del usuario", required = true) @PathVariable("id") Long id) {
-        return generadorRespuesta.buildResponse(
-                usuarioService.encontrarPorId(id),
-                HttpStatus.OK.value(),
-                "Usuario obtenido correctamente");
-    }
+        @PreAuthorize("hasPermission('USUARIOS', 'CREAR')")
+        @PostMapping
+        @Operation(summary = "Crear usuario", description = "Crea un nuevo usuario en el sistema")
+        public ResponseEntity<RespuestaGenerica<UsuarioDto>> create(
+                        @Valid @RequestBody CrearUsuarioDto dto) {
+                return generadorRespuesta.buildResponse(
+                                usuarioService.crear(dto),
+                                HttpStatus.CREATED.value(),
+                                "Usuario creado correctamente");
+        }
 
-    @PostMapping
-    @Operation(summary = "Crear usuario", description = "Crea un nuevo usuario en el sistema")
-    public ResponseEntity<RespuestaGenerica<UsuarioDto>> create(
-            @Valid @RequestBody CrearUsuarioDto crearUsuarioDto) {
-        return generadorRespuesta.buildResponse(
-                usuarioService.crear(crearUsuarioDto),
-                HttpStatus.CREATED.value(),
-                "Usuario creado correctamente");
-    }
+        @PreAuthorize("hasPermission('USUARIOS', 'ACTUALIZAR')")
+        @PutMapping("/{id}")
+        @Operation(summary = "Actualizar usuario", description = "Actualiza un usuario existente por su ID")
+        public ResponseEntity<RespuestaGenerica<UsuarioDto>> update(
+                        @Parameter(description = "ID del usuario", required = true) @PathVariable("id") Long id,
+                        @RequestBody @Valid ActualizarUsuarioDto dto) {
+                return generadorRespuesta.buildResponse(
+                                usuarioService.actualizar(id, dto),
+                                HttpStatus.OK.value(),
+                                "Usuario actualizado correctamente");
+        }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Actualizar usuario", description = "Actualiza un usuario existente por su ID")
-    public ResponseEntity<RespuestaGenerica<UsuarioDto>> update(
-            @Parameter(description = "ID del usuario", required = true) @PathVariable("id") Long id,
-            @RequestBody @Valid ActualizarUsuarioDto usuarioDto) {
-        return generadorRespuesta.buildResponse(
-                usuarioService.actualizar(id, usuarioDto),
-                HttpStatus.OK.value(),
-                "Usuario actualizado correctamente");
-    }
-
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar usuario", description = "Elimina un usuario del sistema por su ID")
-    public ResponseEntity<RespuestaGenerica<Boolean>> delete(
-            @Parameter(description = "ID del usuario", required = true) @PathVariable("id") Long id) {
-        return generadorRespuesta.buildResponse(
-                usuarioService.eliminar(id),
-                HttpStatus.OK.value(),
-                "Usuario eliminado correctamente");
-    }
+        @DeleteMapping("/{id}")
+        @Operation(summary = "Eliminar usuario", description = "Elimina un usuario del sistema por su ID")
+        public ResponseEntity<RespuestaGenerica<Boolean>> delete(
+                        @Parameter(description = "ID del usuario", required = true) @PathVariable("id") Long id) {
+                return generadorRespuesta.buildResponse(
+                                usuarioService.eliminar(id),
+                                HttpStatus.OK.value(),
+                                "Usuario eliminado correctamente");
+        }
 
 }
