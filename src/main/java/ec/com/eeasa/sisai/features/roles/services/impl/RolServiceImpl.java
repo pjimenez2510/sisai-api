@@ -1,5 +1,6 @@
 package ec.com.eeasa.sisai.features.roles.services.impl;
 
+import ec.com.eeasa.sisai.features.auditoria.anotaciones.Auditable;
 import ec.com.eeasa.sisai.features.roles.dtos.ActualizarRolDto;
 import ec.com.eeasa.sisai.features.roles.dtos.CrearRolDto;
 import ec.com.eeasa.sisai.features.roles.dtos.FiltroRolDto;
@@ -45,6 +46,7 @@ public class RolServiceImpl implements RolService {
 
     @Override
     @Transactional
+    @Auditable(tabla = "DIST_USU_ROL", operacion = "CREAR")
     public RolDto crear(CrearRolDto dto) {
         Rol rol = rolMapper.toEntity(dto);
         return rolMapper.toDTO(rolRepository.save(rol));
@@ -52,6 +54,7 @@ public class RolServiceImpl implements RolService {
 
     @Override
     @Transactional
+    @Auditable(tabla = "DIST_USU_ROL", operacion = "ACTUALIZAR")
     public RolDto actualizar(Long id, ActualizarRolDto dto) {
         Rol rol = encontrarPorIdEntity(id);
         rolMapper.updateEntity(rol, dto);
@@ -60,6 +63,7 @@ public class RolServiceImpl implements RolService {
 
     @Override
     @Transactional
+    @Auditable(tabla = "DIST_USU_ROL", operacion = "ELIMINAR")
     public boolean eliminar(Long id) {
         Rol rol = encontrarPorIdEntity(id);
         rolRepository.delete(rol);

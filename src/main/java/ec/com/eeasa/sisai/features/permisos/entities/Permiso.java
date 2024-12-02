@@ -1,6 +1,7 @@
 package ec.com.eeasa.sisai.features.permisos.entities;
 
 import ec.com.eeasa.sisai.features.rol_permiso.entities.RolPermiso;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

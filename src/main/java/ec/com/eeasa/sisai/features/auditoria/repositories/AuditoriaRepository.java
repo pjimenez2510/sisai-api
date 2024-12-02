@@ -1,4 +1,7 @@
-package ec.com.eeasa.sisai.features.auditoria.entities;
+package ec.com.eeasa.sisai.features.auditoria.repositories;
 
-public interface AuditoriaRepository extends org.springframework.data.jpa.repository.JpaRepository<ec.com.eeasa.sisai.features.auditoria.entities.Auditoria, java.lang.Long> {
-  }
+import ec.com.eeasa.sisai.features.auditoria.entities.Auditoria;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AuditoriaRepository extends JpaRepository<Auditoria, Long> {
+}
