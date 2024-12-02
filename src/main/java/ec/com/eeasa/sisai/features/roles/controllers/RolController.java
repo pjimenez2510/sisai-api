@@ -15,6 +15,7 @@ import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,7 @@ public class RolController {
         private final RolService rolService;
         private final GeneradorRespuesta generadorRespuesta;
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL, @accionPermiso.LEER)")
         @GetMapping
         @Operation(summary = "Listar roles", description = "Obtiene todos los roles registrados en el sistema")
         public ResponseEntity<RespuestaGenerica<RolDto>> getAll(
@@ -40,6 +42,7 @@ public class RolController {
                                 "Roles obtenidos correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL, @accionPermiso.LEER)")
         @GetMapping("/{id}")
         @Operation(summary = "Obtener rol por ID", description = "Obtiene un rol específico por su identificador")
         public ResponseEntity<RespuestaGenerica<RolDto>> getById(
@@ -50,6 +53,7 @@ public class RolController {
                                 "Rol obtenido correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL, @accionPermiso.CREAR)")
         @PostMapping
         @Operation(summary = "Crear rol", description = "Crea un nuevo rol en el sistema")
         public ResponseEntity<RespuestaGenerica<RolDto>> create(
@@ -60,6 +64,7 @@ public class RolController {
                                 "Rol creado correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL, @accionPermiso.ACTUALIZAR)")
         @PutMapping("/{id}")
         @Operation(summary = "Actualizar rol", description = "Actualiza un rol existente por su ID")
         public ResponseEntity<RespuestaGenerica<RolDto>> update(
@@ -71,6 +76,7 @@ public class RolController {
                                 "Rol actualizado correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL, @accionPermiso.ELIMINAR)")
         @DeleteMapping("/{id}")
         @Operation(summary = "Eliminar rol", description = "Elimina un rol del sistema por su ID")
         public ResponseEntity<RespuestaGenerica<Boolean>> delete(

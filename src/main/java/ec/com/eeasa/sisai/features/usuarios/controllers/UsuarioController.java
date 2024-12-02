@@ -31,7 +31,7 @@ public class UsuarioController {
         private final UsuarioService usuarioService;
         private final GeneradorRespuesta generadorRespuesta;
 
-        @PreAuthorize("hasPermission('USUARIOS', 'LEER')")
+        @PreAuthorize("hasPermission(@recursoPermiso.USUARIO, @accionPermiso.LEER)")
         @GetMapping
         @Operation(summary = "Listar usuarios", description = "Obtiene todos los usuarios registrados en el sistema")
         public ResponseEntity<RespuestaGenerica<UsuarioDto>> getAll(
@@ -43,7 +43,7 @@ public class UsuarioController {
 
         }
 
-        @PreAuthorize("hasPermission('USUARIOS', 'LEER')")
+        @PreAuthorize("hasPermission(@recursoPermiso.USUARIO, @accionPermiso.LEER)")
         @GetMapping("/{id}")
         @Operation(summary = "Obtener usuario por ID", description = "Obtiene un usuario específico por su identificador")
         public ResponseEntity<RespuestaGenerica<UsuarioDto>> getById(
@@ -54,7 +54,7 @@ public class UsuarioController {
                                 "Usuario obtenido correctamente");
         }
 
-        @PreAuthorize("hasPermission('USUARIOS', 'CREAR')")
+        @PreAuthorize("hasPermission(@recursoPermiso.USUARIO, @accionPermiso.CREAR)")
         @PostMapping
         @Operation(summary = "Crear usuario", description = "Crea un nuevo usuario en el sistema")
         public ResponseEntity<RespuestaGenerica<UsuarioDto>> create(
@@ -65,7 +65,7 @@ public class UsuarioController {
                                 "Usuario creado correctamente");
         }
 
-        @PreAuthorize("hasPermission('USUARIOS', 'ACTUALIZAR')")
+        @PreAuthorize("hasPermission(@recursoPermiso.USUARIO, @accionPermiso.ACTUALIZAR)")
         @PutMapping("/{id}")
         @Operation(summary = "Actualizar usuario", description = "Actualiza un usuario existente por su ID")
         public ResponseEntity<RespuestaGenerica<UsuarioDto>> update(
@@ -77,6 +77,7 @@ public class UsuarioController {
                                 "Usuario actualizado correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.USUARIO, @accionPermiso.ELIMINAR)")
         @DeleteMapping("/{id}")
         @Operation(summary = "Eliminar usuario", description = "Elimina un usuario del sistema por su ID")
         public ResponseEntity<RespuestaGenerica<Boolean>> delete(

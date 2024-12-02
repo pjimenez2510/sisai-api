@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.features.auth;
+package ec.com.eeasa.sisai.features.auth.filter;
 
 import java.io.IOException;
 
@@ -28,6 +28,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
     }
+    // response
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

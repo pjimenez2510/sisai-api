@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.features.auth;
+package ec.com.eeasa.sisai.features.auth.entities;
 
 import java.io.Serializable;
 
@@ -12,10 +12,6 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 
     @Override
     public boolean hasPermission(Authentication auth, Object targetDomainObject, Object permission) {
-        System.out.println("CustomPermissionEvaluator.hasPermission");
-        System.out.println("auth: " + auth);
-        System.out.println("targetDomainObject: " + targetDomainObject);
-        System.out.println("permission: " + permission);
         if ((auth == null) || (targetDomainObject == null) || !(permission instanceof String)) {
             return false;
         }

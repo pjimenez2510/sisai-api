@@ -21,7 +21,7 @@ public class AuthenticationService {
     private final CustomUserDetailsService userDetailsService;
 
     public AuthResponse authenticate(AuthRequest request) {
-        CustomUserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
+        CustomUserDetails userDetails = userDetailsService.loadUserByUsername(request.getNombreUsuario());
 
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 userDetails,

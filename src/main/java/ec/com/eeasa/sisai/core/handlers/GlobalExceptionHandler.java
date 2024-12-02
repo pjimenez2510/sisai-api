@@ -1,16 +1,20 @@
-package ec.com.eeasa.sisai.core.excepciones;
+package ec.com.eeasa.sisai.core.handlers;
 
+import ec.com.eeasa.sisai.features.auth.exceptions.NoAutenticado;
 import ec.com.eeasa.sisai.shared.excepciones.RecursoNoEncontrado;
 import ec.com.eeasa.sisai.shared.respuesta.RespuestaGenerica;
 import ec.com.eeasa.sisai.shared.respuesta.GeneradorRespuesta;
+import io.jsonwebtoken.MalformedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +32,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<RespuestaGenerica<Object>> handleException(Exception ex) {
         log.error("Error no controlado", ex);
-        return generadorRespuesta.buildErrorResponse("Error interno del servidor", Collections.singletonList(ex.getMessage()),
+        return generadorRespuesta.buildErrorResponse("Error interno del servidor",
+                Collections.singletonList(ex.getMessage()),
                 HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
 
@@ -45,6 +50,33 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.toList());
 
         return generadorRespuesta.buildErrorResponse("Validation error", errors, HttpStatus.BAD_REQUEST.value());
+    }
+
+    // AUTH
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<RespuestaGenerica<Object>> handleAccessDeniedException(AccessDeniedException ex) {
+        return generadorRespuesta.buildErrorResponse("Acceso denegado", Collections.singletonList(ex.getMessage()),
+                HttpStatus.FORBIDDEN.value());
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<RespuestaGenerica<Object>> handleUsernameNotFoundException(UsernameNotFoundException ex) {
+        return generadorRespuesta.buildErrorResponse("Usuario no encontrado",
+                Collections.singletonList(ex.getMessage()),
+                HttpStatus.UNAUTHORIZED.value());
+    }
+
+    @ExceptionHandler(NoAutenticado.class)
+    public ResponseEntity<RespuestaGenerica<Object>> handleNoAutenticado(NoAutenticado ex) {
+        return generadorRespuesta.buildErrorResponse("No autenticado", Collections.singletonList(ex.getMessage()),
+                ex.getStatus().value());
+    }
+
+    @ExceptionHandler(MalformedJwtException.class)
+    public ResponseEntity<RespuestaGenerica<Object>> handleMalformedJwtException(MalformedJwtException ex) {
+        return generadorRespuesta.buildErrorResponse("Token mal formado", Collections.singletonList(ex.getMessage()),
+                HttpStatus.UNAUTHORIZED.value());
     }
 
 }

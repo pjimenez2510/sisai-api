@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.features.auth;
+package ec.com.eeasa.sisai.features.auth.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

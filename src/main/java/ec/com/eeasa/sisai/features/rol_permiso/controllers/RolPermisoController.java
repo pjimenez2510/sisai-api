@@ -15,6 +15,7 @@ import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,7 @@ public class RolPermisoController {
         private final RolPermisoService rolPermisoService;
         private final GeneradorRespuesta generadorRespuesta;
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL_PERMISO, @accionPermiso.LEER)")
         @GetMapping
         @Operation(summary = "Listar Roles - Permisos", description = "Obtiene todos los Rol - Permisos registrados en el sistema")
         public ResponseEntity<RespuestaGenerica<RolPermisoDto>> getAll(
@@ -41,6 +43,7 @@ public class RolPermisoController {
                                 "Roles - Permisos obtenidos correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL_PERMISO, @accionPermiso.LEER)")
         @GetMapping("/{id}")
         @Operation(summary = "Obtener Rol - Permiso por ID", description = "Obtiene un Rol - Permiso específico por su identificador")
         public ResponseEntity<RespuestaGenerica<RolPermisoDto>> getById(
@@ -51,6 +54,7 @@ public class RolPermisoController {
                                 "Rol - Permiso obtenido correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL_PERMISO, @accionPermiso.CREAR)")
         @PostMapping
         @Operation(summary = "Crear Rol - Permiso", description = "Crea un nuevo Rol - Permiso en el sistema")
         public ResponseEntity<RespuestaGenerica<List<RolPermisoDto>>> create(
@@ -61,6 +65,7 @@ public class RolPermisoController {
                                 "Rol - Permiso creado correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL_PERMISO, @accionPermiso.ACTUALIZAR)")
         @PutMapping
         @Operation(summary = "Actualizar Rol - Permiso", description = "Actualiza un Rol - Permiso existente por su ID")
         public ResponseEntity<RespuestaGenerica<List<RolPermisoDto>>> update(
@@ -71,6 +76,7 @@ public class RolPermisoController {
                                 "Rol - Permiso actualizado correctamente");
         }
 
+        @PreAuthorize("hasPermission(@recursoPermiso.ROL_PERMISO, @accionPermiso.ELIMINAR)")
         @DeleteMapping("/{id}")
         @Operation(summary = "Eliminar Rol - Permiso", description = "Elimina un Rol - Permiso del sistema por su ID")
         public ResponseEntity<RespuestaGenerica<Boolean>> delete(
