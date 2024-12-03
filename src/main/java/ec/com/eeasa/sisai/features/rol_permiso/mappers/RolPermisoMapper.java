@@ -8,6 +8,7 @@ import ec.com.eeasa.sisai.features.rol_permiso.dtos.RolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.entities.RolPermiso;
 import ec.com.eeasa.sisai.features.roles.mappers.RolMapper;
 import ec.com.eeasa.sisai.features.roles.services.RolService;
+import ec.com.eeasa.sisai.shared.constantes.Estado;
 import ec.com.eeasa.sisai.shared.interfaces.Mapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -37,6 +38,7 @@ public class RolPermisoMapper
             RolPermiso rolPermiso = new RolPermiso();
             rolPermiso.setRol(rolService.encontrarPorIdEntity(rolId));
             rolPermiso.setPermiso(permisoService.encontrarPorIdEntity(permisoId));
+            rolPermiso.setActivo(Estado.ACTIVO);
             rolPermisos.add(rolPermiso);
         }
         return rolPermisos;

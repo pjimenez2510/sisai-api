@@ -4,6 +4,7 @@ import ec.com.eeasa.sisai.features.permisos.dtos.CrearPermisoDto;
 import ec.com.eeasa.sisai.features.permisos.dtos.PermisoDto;
 import ec.com.eeasa.sisai.features.permisos.dtos.ActualizarPermisoDto;
 import ec.com.eeasa.sisai.features.permisos.entities.Permiso;
+import ec.com.eeasa.sisai.shared.constantes.Estado;
 import ec.com.eeasa.sisai.shared.interfaces.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ public class PermisoMapper implements Mapper<Permiso, PermisoDto, CrearPermisoDt
         permiso.setRecurso(crearPermisoDto.getRecurso());
         permiso.setAccion(crearPermisoDto.getAccion());
         permiso.setDescripcion(crearPermisoDto.getDescripcion());
+        permiso.setActivo(Estado.ACTIVO);
         return permiso;
     }
 

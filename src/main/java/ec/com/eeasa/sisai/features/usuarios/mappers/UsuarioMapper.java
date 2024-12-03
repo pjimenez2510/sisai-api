@@ -7,6 +7,7 @@ import ec.com.eeasa.sisai.features.usuarios.dtos.ActualizarUsuarioDto;
 import ec.com.eeasa.sisai.features.usuarios.dtos.CrearUsuarioDto;
 import ec.com.eeasa.sisai.features.usuarios.dtos.UsuarioDto;
 import ec.com.eeasa.sisai.features.usuarios.entities.Usuario;
+import ec.com.eeasa.sisai.shared.constantes.Estado;
 import ec.com.eeasa.sisai.shared.interfaces.Mapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -37,6 +38,7 @@ public class UsuarioMapper implements Mapper<Usuario, UsuarioDto, CrearUsuarioDt
         usuario.setSeccion(crearUsuarioDto.getSeccion());
         usuario.setDepartamento(crearUsuarioDto.getDepartamento());
         usuario.setRol(rol);
+        usuario.setActivo(Estado.ACTIVO);
         return usuario;
     }
 

@@ -18,6 +18,7 @@ import ec.com.eeasa.sisai.features.roles.entities.Rol;
 import ec.com.eeasa.sisai.features.roles.repositories.RolRepository;
 import ec.com.eeasa.sisai.features.usuarios.entities.Usuario;
 import ec.com.eeasa.sisai.features.usuarios.repositories.UsuarioRepository;
+import ec.com.eeasa.sisai.shared.constantes.Estado;
 import ec.com.eeasa.sisai.shared.respuesta.GeneradorRespuesta;
 import ec.com.eeasa.sisai.shared.respuesta.RespuestaGenerica;
 import io.swagger.v3.oas.annotations.Operation;
@@ -78,6 +79,7 @@ public class SeedController {
                 permiso.setAccion(accion);
                 permiso.setRecurso(recurso);
                 permiso.setDescripcion(accion + " " + recurso);
+                permiso.setActivo(Estado.ACTIVO);
                 permisos.add(permiso);
             }
         }
@@ -88,10 +90,12 @@ public class SeedController {
 
         Rol rolAdmin = new Rol();
         rolAdmin.setDescripcion("ADMINISTRADOR");
+        rolAdmin.setActivo(Estado.ACTIVO);
         rols.add(rolAdmin);
 
         Rol rolUser = new Rol();
         rolUser.setDescripcion("USUARIO");
+        rolUser.setActivo(Estado.ACTIVO);
         rols.add(rolUser);
 
         List<Rol> rolsCreate = rolRepository.saveAll(rols);
@@ -104,6 +108,7 @@ public class SeedController {
                     RolPermiso rolPermiso = new RolPermiso();
                     rolPermiso.setRol(rol);
                     rolPermiso.setPermiso(permiso);
+                    rolPermiso.setActivo(Estado.ACTIVO);
                     rolPermisos.add(rolPermiso);
                 }
             }
@@ -114,6 +119,7 @@ public class SeedController {
                         RolPermiso rolPermiso = new RolPermiso();
                         rolPermiso.setRol(rol);
                         rolPermiso.setPermiso(permiso);
+                        rolPermiso.setActivo(Estado.ACTIVO);
                         rolPermisos.add(rolPermiso);
                     }
                 }
@@ -134,6 +140,7 @@ public class SeedController {
         usuarioAdmin.setEmail("mariacarrion@gmail.com");
         usuarioAdmin.setRol(rolsCreate.get(0));
         usuarioAdmin.setSeccion("Sistemas");
+        usuarioAdmin.setActivo(Estado.ACTIVO);
 
         usuarios.add(usuarioAdmin);
 
@@ -147,6 +154,7 @@ public class SeedController {
         usuarioUser.setEmail("juancarrion@gmail.com");
         usuarioUser.setRol(rolsCreate.get(1));
         usuarioUser.setSeccion("Sistemas");
+        usuarioUser.setActivo(Estado.ACTIVO);
 
         usuarios.add(usuarioUser);
 

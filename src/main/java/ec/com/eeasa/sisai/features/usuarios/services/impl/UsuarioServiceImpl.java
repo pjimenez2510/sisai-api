@@ -1,5 +1,8 @@
 package ec.com.eeasa.sisai.features.usuarios.services.impl;
 
+import ec.com.eeasa.sisai.features.auditoria.anotaciones.Auditable;
+import ec.com.eeasa.sisai.features.auditoria.constantes.Operaciones;
+import ec.com.eeasa.sisai.features.auditoria.constantes.Tablas;
 import ec.com.eeasa.sisai.features.usuarios.dtos.ActualizarUsuarioDto;
 import ec.com.eeasa.sisai.features.usuarios.dtos.CrearUsuarioDto;
 import ec.com.eeasa.sisai.features.usuarios.dtos.FiltroUsuarioDto;
@@ -46,6 +49,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
+    @Auditable(tabla = Tablas.USUARIO, operacion = Operaciones.CREAR)
     public UsuarioDto crear(CrearUsuarioDto dto) {
         Usuario usuario = usuarioMapper.toEntity(dto);
         return usuarioMapper.toDTO(usuarioRepository.save(usuario));
@@ -53,6 +57,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
+    @Auditable(tabla = Tablas.USUARIO, operacion = Operaciones.ACTUALIZAR)
     public UsuarioDto actualizar(Long id, ActualizarUsuarioDto dto) {
         Usuario usuario = encontrarPorIdEntity(id);
         usuarioMapper.updateEntity(usuario, dto);
@@ -61,6 +66,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
+    @Auditable(tabla = Tablas.USUARIO, operacion = Operaciones.ELIMINAR)
     public boolean eliminar(Long id) {
         Usuario usuario = encontrarPorIdEntity(id);
         usuarioRepository.delete(usuario);

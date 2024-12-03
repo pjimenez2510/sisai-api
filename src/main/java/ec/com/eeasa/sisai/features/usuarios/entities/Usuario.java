@@ -1,17 +1,23 @@
 package ec.com.eeasa.sisai.features.usuarios.entities;
 
+import ec.com.eeasa.sisai.features.auditoria.entities.DatosBaseAuditoria;
 import ec.com.eeasa.sisai.features.roles.entities.Rol;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.Instant;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "DIST_USU_USUARIO", schema = "ROOTSISAI")
-public class Usuario {
+@AttributeOverrides({
+        @AttributeOverride(name = "creadoPor", column = @Column(name = "DIUSU_CREADO_POR")),
+        @AttributeOverride(name = "fechaCreacion", column = @Column(name = "DIUSU_FECHA_CREACION")),
+        @AttributeOverride(name = "modificadoPor", column = @Column(name = "DIUSU_MODIFICADO_POR")),
+        @AttributeOverride(name = "fechaModificacion", column = @Column(name = "DIUSU_FECHA_MODIFICACION"))
+})
+public class Usuario extends DatosBaseAuditoria {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEC_DIST_USU_USUARIO")
     @SequenceGenerator(name = "SEC_DIST_USU_USUARIO", sequenceName = "SEC_DIST_USU_USUARIO", allocationSize = 1)
@@ -48,17 +54,5 @@ public class Usuario {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "DUROL_CODIGO_ROL", nullable = false)
     private Rol rol;
-
-    @Column(name = "DIUSU_CREADO_POR", length = 100)
-    private String creadoPor;
-
-    @Column(name = "DIUSU_FECHA_CREACION")
-    private Instant fechaCreacion;
-
-    @Column(name = "DIUSU_MODIFICADO_POR", length = 100)
-    private String modificadoPor;
-
-    @Column(name = "DIUSU_FECHA_MODIFICACION")
-    private Instant fechaModificacion;
 
 }

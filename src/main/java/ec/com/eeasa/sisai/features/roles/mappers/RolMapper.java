@@ -4,6 +4,7 @@ import ec.com.eeasa.sisai.features.roles.dtos.ActualizarRolDto;
 import ec.com.eeasa.sisai.features.roles.dtos.CrearRolDto;
 import ec.com.eeasa.sisai.features.roles.dtos.RolDto;
 import ec.com.eeasa.sisai.features.roles.entities.Rol;
+import ec.com.eeasa.sisai.shared.constantes.Estado;
 import ec.com.eeasa.sisai.shared.interfaces.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ public class RolMapper implements Mapper<Rol, RolDto, CrearRolDto, ActualizarRol
     public Rol toEntity(CrearRolDto crearRolDto) {
         Rol rol = new Rol();
         rol.setDescripcion(crearRolDto.getDescripcion());
+        rol.setActivo(Estado.ACTIVO);
         return rol;
     }
 

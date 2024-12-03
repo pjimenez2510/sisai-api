@@ -1,6 +1,6 @@
 package ec.com.eeasa.sisai.features.contratos.entities;
 
-import ec.com.eeasa.sisai.features.tipoContrato.entities.TipoContrato;
+import ec.com.eeasa.sisai.features.tipo_contrato.entities.TipoContrato;
 import ec.com.eeasa.sisai.features.operadoras.entities.Operadora;
 import lombok.Getter;
 import lombok.Setter;

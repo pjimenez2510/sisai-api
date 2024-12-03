@@ -1,5 +1,8 @@
 package ec.com.eeasa.sisai.features.rol_permiso.services.impl;
 
+import ec.com.eeasa.sisai.features.auditoria.anotaciones.Auditable;
+import ec.com.eeasa.sisai.features.auditoria.constantes.Operaciones;
+import ec.com.eeasa.sisai.features.auditoria.constantes.Tablas;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.ActualizarRolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.CrearRolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.FiltroRolPermisoDto;
@@ -50,6 +53,7 @@ public class RolPermisoServiceImpl implements RolPermisoService {
 
     @Override
     @Transactional
+    @Auditable(tabla = Tablas.ROL_PERMISO, operacion = Operaciones.CREAR)
     public List<RolPermisoDto> crear(CrearRolPermisoDto dto) {
         List<RolPermiso> rolPermisos = rolPermisoMapper.toEntity(dto.getRolPermisoIds(),
                 dto.getRolId());
@@ -59,6 +63,7 @@ public class RolPermisoServiceImpl implements RolPermisoService {
 
     @Override
     @Transactional
+    @Auditable(tabla = Tablas.ROL_PERMISO, operacion = Operaciones.ACTUALIZAR)
     public List<RolPermisoDto> actualizar(ActualizarRolPermisoDto dto) {
         List<RolPermiso> rolPermisos = rolPermisoRepository.findAllById(dto.getRolPermisoIds());
         if (rolPermisos.isEmpty()) {
@@ -72,6 +77,7 @@ public class RolPermisoServiceImpl implements RolPermisoService {
 
     @Override
     @Transactional
+    @Auditable(tabla = Tablas.ROL_PERMISO, operacion = Operaciones.ELIMINAR)
     public boolean eliminar(Long id) {
         RolPermiso rolPermiso = encontrarPorIdEntity(id);
         rolPermisoRepository.delete(rolPermiso);

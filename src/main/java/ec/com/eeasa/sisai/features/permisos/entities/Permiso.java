@@ -1,12 +1,11 @@
 package ec.com.eeasa.sisai.features.permisos.entities;
 
+import ec.com.eeasa.sisai.features.auditoria.entities.DatosBaseAuditoria;
 import ec.com.eeasa.sisai.features.rol_permiso.entities.RolPermiso;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -14,7 +13,13 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "DIST_USU_PERMISO", schema = "ROOTSISAI")
-public class Permiso {
+@AttributeOverrides({
+        @AttributeOverride(name = "creadoPor", column = @Column(name = "DUPER_CREADO_POR")),
+        @AttributeOverride(name = "fechaCreacion", column = @Column(name = "DUPER_FECHA_CREACION")),
+        @AttributeOverride(name = "modificadoPor", column = @Column(name = "DUPER_MODIFICADO_POR")),
+        @AttributeOverride(name = "fechaModificacion", column = @Column(name = "DUPER_FECHA_MODIFICACION"))
+})
+public class Permiso extends DatosBaseAuditoria {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEC_DIST_USU_PERMISO")
     @SequenceGenerator(name = "SEC_DIST_USU_PERMISO", sequenceName = "SEC_DIST_USU_PERMISO", allocationSize = 1)
@@ -32,18 +37,6 @@ public class Permiso {
 
     @Column(name = "DUPER_ACTIVO", length = 20)
     private String activo;
-
-    @Column(name = "DUPER_CREADO_POR", length = 100)
-    private String creadoPor;
-
-    @Column(name = "DUPER_FECHA_CREACION")
-    private Instant fechaCreacion;
-
-    @Column(name = "DUPER_MODIFICADO_POR", length = 100)
-    private String modificadoPor;
-
-    @Column(name = "DUPER_FECHA_MODIFICACION")
-    private Instant fechaModificacion;
 
     @OneToMany(mappedBy = "permiso")
     private Set<RolPermiso> rolPermisos = new LinkedHashSet<>();

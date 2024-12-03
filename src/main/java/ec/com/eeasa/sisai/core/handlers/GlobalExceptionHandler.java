@@ -9,12 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.nio.file.AccessDeniedException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<RespuestaGenerica<Object>> handleAccessDeniedException(AccessDeniedException ex) {
-        return generadorRespuesta.buildErrorResponse("Acceso denegado", Collections.singletonList(ex.getMessage()),
+        return generadorRespuesta.buildErrorResponse("Acceso denegado", Collections.singletonList("No tiene permisos para acceder a este recurso."),
                 HttpStatus.FORBIDDEN.value());
     }
 
