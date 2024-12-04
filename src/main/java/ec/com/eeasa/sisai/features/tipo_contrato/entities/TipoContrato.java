@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import ec.com.eeasa.sisai.features.auditoria.entities.DatosBaseAuditoria;
 
@@ -32,7 +33,8 @@ public class TipoContrato extends DatosBaseAuditoria {
     @Column(name = "DICTP_DESCRIPCION", length = 50)
     private String descripcion;
 
-    @Column(name = "DICTP_VALOR_UNITARIO", nullable = false, precision = 2, scale = 2)
+    @NotNull
+    @Column(name = "DICTP_VALOR_UNITARIO", nullable = false, precision = 6, scale = 2)
     private BigDecimal valorUnitario;
 
     @Column(name = "DICTP_ACTIVO", length = 20)

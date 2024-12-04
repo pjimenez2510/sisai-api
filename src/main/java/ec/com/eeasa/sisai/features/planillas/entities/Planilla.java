@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -52,8 +53,8 @@ public class Planilla {
     @Column(name = "DPPP_VALOR_TOTAL", nullable = false, precision = 10, scale = 2)
     private BigDecimal dpppValorTotal;
 
-    @Column(name = "DPPP_ADICIONAL", nullable = false)
-    private Boolean dpppAdicional = false;
+    @Column(name = "DPPP_ADICIONAL", nullable = false, precision = 10, scale = 2)
+    private BigDecimal dpppAdicional;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "DPPAG_CODIGO_PAGO_PLANILLA", nullable = false)

@@ -19,6 +19,7 @@ import ec.com.eeasa.sisai.features.roles.repositories.RolRepository;
 import ec.com.eeasa.sisai.features.usuarios.entities.Usuario;
 import ec.com.eeasa.sisai.features.usuarios.repositories.UsuarioRepository;
 import ec.com.eeasa.sisai.shared.constantes.Estado;
+import ec.com.eeasa.sisai.shared.constantes.RecursoPermiso;
 import ec.com.eeasa.sisai.shared.respuesta.GeneradorRespuesta;
 import ec.com.eeasa.sisai.shared.respuesta.RespuestaGenerica;
 import io.swagger.v3.oas.annotations.Operation;
@@ -57,20 +58,21 @@ public class SeedController {
         };
 
         String[] recursos = {
-                "USUARIO",
-                "ROL",
-                "PERMISO",
-                "CONTRATO",
-                "ROL_PERMISO",
-                "AUDITORIA",
-                "DOCUMENTO",
-                "INCREMENTO",
-                "OPERADORA",
-                "PAGO",
-                "PARAMETRO",
-                "PLANILLA",
-                "POLIZAS",
-                "SECTORES",
+                RecursoPermiso.USUARIO,
+                RecursoPermiso.ROL,
+                RecursoPermiso.PERMISO,
+                RecursoPermiso.CONTRATO,
+                RecursoPermiso.TIPO_CONTRATO,
+                RecursoPermiso.ROL_PERMISO,
+                RecursoPermiso.AUDITORIA,
+                RecursoPermiso.DOCUMENTO,
+                RecursoPermiso.INCREMENTO,
+                RecursoPermiso.OPERADORA,
+                RecursoPermiso.PAGO,
+                RecursoPermiso.PARAMETRO,
+                RecursoPermiso.PLANILLA,
+                RecursoPermiso.POLIZAS,
+                RecursoPermiso.SECTORES,
         };
 
         for (String recurso : recursos) {

@@ -8,6 +8,7 @@ public class RecursoPermiso {
     public static final String ROL = "ROL";
     public static final String PERMISO = "PERMISO";
     public static final String CONTRATO = "CONTRATO";
+    public static final String TIPO_CONTRATO = "TIPO_CONTRATO";
     public static final String ROL_PERMISO = "ROL_PERMISO";
     public static final String AUDITORIA = "AUDITORIA";
     public static final String DOCUMENTO = "DOCUMENTO";
