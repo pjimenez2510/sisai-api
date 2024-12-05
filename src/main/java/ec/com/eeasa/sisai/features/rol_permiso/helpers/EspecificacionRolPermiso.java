@@ -2,7 +2,7 @@ package ec.com.eeasa.sisai.features.rol_permiso.helpers;
 
 import ec.com.eeasa.sisai.features.rol_permiso.dtos.FiltroRolPermisoDto;
 import ec.com.eeasa.sisai.features.rol_permiso.entities.RolPermiso;
-import ec.com.eeasa.sisai.shared.filtros.EspecificacionBase;
+import ec.com.eeasa.sisai.shared.models.EspecificacionBase;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

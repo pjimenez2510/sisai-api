@@ -1,5 +1,7 @@
-package ec.com.eeasa.sisai.shared.respuesta;
+package ec.com.eeasa.sisai.shared.utils;
 
+import ec.com.eeasa.sisai.shared.models.MetaData;
+import ec.com.eeasa.sisai.shared.models.RespuestaGenerica;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

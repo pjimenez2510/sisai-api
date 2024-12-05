@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.shared.filtros;
+package ec.com.eeasa.sisai.shared.models;
 
 import org.springframework.data.jpa.domain.Specification;
 

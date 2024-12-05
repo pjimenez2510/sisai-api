@@ -15,8 +15,8 @@ import ec.com.eeasa.sisai.features.tipo_contrato.dtos.CrearTipoContratoDto;
 import ec.com.eeasa.sisai.features.tipo_contrato.dtos.FiltroTipoContratoDto;
 import ec.com.eeasa.sisai.features.tipo_contrato.dtos.TipoContratoDto;
 import ec.com.eeasa.sisai.features.tipo_contrato.services.TipoContratoService;
-import ec.com.eeasa.sisai.shared.respuesta.GeneradorRespuesta;
-import ec.com.eeasa.sisai.shared.respuesta.RespuestaGenerica;
+import ec.com.eeasa.sisai.shared.utils.GeneradorRespuesta;
+import ec.com.eeasa.sisai.shared.models.RespuestaGenerica;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 

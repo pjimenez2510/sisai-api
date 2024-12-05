@@ -1,8 +1,8 @@
 package ec.com.eeasa.sisai.core.handlers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ec.com.eeasa.sisai.shared.respuesta.GeneradorRespuesta;
-import ec.com.eeasa.sisai.shared.respuesta.RespuestaGenerica;
+import ec.com.eeasa.sisai.shared.utils.GeneradorRespuesta;
+import ec.com.eeasa.sisai.shared.models.RespuestaGenerica;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

@@ -2,7 +2,7 @@ package ec.com.eeasa.sisai.features.usuarios.helpers;
 
 import ec.com.eeasa.sisai.features.usuarios.dtos.FiltroUsuarioDto;
 import ec.com.eeasa.sisai.features.usuarios.entities.Usuario;
-import ec.com.eeasa.sisai.shared.filtros.EspecificacionBase;
+import ec.com.eeasa.sisai.shared.models.EspecificacionBase;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

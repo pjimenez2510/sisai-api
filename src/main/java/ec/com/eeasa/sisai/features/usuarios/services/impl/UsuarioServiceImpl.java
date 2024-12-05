@@ -13,7 +13,7 @@ import ec.com.eeasa.sisai.features.usuarios.mappers.UsuarioMapper;
 import ec.com.eeasa.sisai.features.usuarios.repositories.UsuarioRepository;
 import ec.com.eeasa.sisai.features.usuarios.services.UsuarioService;
 import ec.com.eeasa.sisai.shared.excepciones.RecursoNoEncontrado;
-import ec.com.eeasa.sisai.utils.PaginacionUtils;
+import ec.com.eeasa.sisai.shared.utils.PaginacionUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;

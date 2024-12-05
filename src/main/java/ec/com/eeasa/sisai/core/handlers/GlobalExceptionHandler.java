@@ -1,9 +1,10 @@
 package ec.com.eeasa.sisai.core.handlers;
 
 import ec.com.eeasa.sisai.features.auth.exceptions.NoAutenticado;
+import ec.com.eeasa.sisai.shared.excepciones.MalaSolicitud;
 import ec.com.eeasa.sisai.shared.excepciones.RecursoNoEncontrado;
-import ec.com.eeasa.sisai.shared.respuesta.RespuestaGenerica;
-import ec.com.eeasa.sisai.shared.respuesta.GeneradorRespuesta;
+import ec.com.eeasa.sisai.shared.models.RespuestaGenerica;
+import ec.com.eeasa.sisai.shared.utils.GeneradorRespuesta;
 import io.jsonwebtoken.MalformedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -39,6 +40,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RecursoNoEncontrado.class)
     public ResponseEntity<RespuestaGenerica<Object>> handleResourceNotFound(RecursoNoEncontrado ex) {
+        return generadorRespuesta.buildErrorResponse(ex.getTitle(), Collections.singletonList(ex.getMessage()),
+                ex.getStatus().value());
+    }
+
+    @ExceptionHandler(MalaSolicitud.class)
+    public ResponseEntity<RespuestaGenerica<Object>> handleBadRequest(MalaSolicitud ex) {
         return generadorRespuesta.buildErrorResponse(ex.getTitle(), Collections.singletonList(ex.getMessage()),
                 ex.getStatus().value());
     }

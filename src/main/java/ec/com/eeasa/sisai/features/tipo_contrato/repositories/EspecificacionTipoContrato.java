@@ -1,9 +1,9 @@
-package ec.com.eeasa.sisai.features.tipo_contrato.helpers;
+package ec.com.eeasa.sisai.features.tipo_contrato.repositories;
 
 import ec.com.eeasa.sisai.features.tipo_contrato.dtos.FiltroTipoContratoDto;
 import ec.com.eeasa.sisai.features.tipo_contrato.entities.TipoContrato;
 import ec.com.eeasa.sisai.shared.constantes.Estado;
-import ec.com.eeasa.sisai.shared.filtros.EspecificacionBase;
+import ec.com.eeasa.sisai.shared.models.EspecificacionBase;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

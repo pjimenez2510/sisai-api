@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.shared.respuesta;
+package ec.com.eeasa.sisai.shared.models;
 
 import lombok.Builder;
 import lombok.Data;

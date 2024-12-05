@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai.shared.filtros;
+package ec.com.eeasa.sisai.shared.models;
 
 import ec.com.eeasa.sisai.shared.constantes.PaginacionOpciones;
 import io.swagger.v3.oas.annotations.Parameter;

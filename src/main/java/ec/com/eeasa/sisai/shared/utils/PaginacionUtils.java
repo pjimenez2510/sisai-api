@@ -1,6 +1,6 @@
-package ec.com.eeasa.sisai.utils;
+package ec.com.eeasa.sisai.shared.utils;
 
-import ec.com.eeasa.sisai.shared.filtros.FiltroBase;
+import ec.com.eeasa.sisai.shared.models.FiltroBase;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
