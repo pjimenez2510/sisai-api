@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ec.com.eeasa.sisai.features.permisos.repositories.PermisoRepository;
+import ec.com.eeasa.sisai.features.provincia.entities.Provincia;
+import ec.com.eeasa.sisai.features.provincia.repositories.ProvinciaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -38,6 +40,7 @@ public class SeedController {
     private final UsuarioRepository usuarioRepository;
     private final GeneradorRespuesta generadorRespuesta;
     private final PermisoRepository permisoRepository;
+    private final ProvinciaRepository provinciaRepository;
 
     @GetMapping
     @Operation(summary = "Ejecutar seed", description = "Obtiene todos los roles registrados en el sistema")
@@ -161,6 +164,25 @@ public class SeedController {
         usuarios.add(usuarioUser);
 
         usuarioRepository.saveAll(usuarios);
+
+        provinciaRepository.deleteAll();
+
+        Provincia provincia1 = new Provincia();
+        provincia1.setNombre("Azuay");
+        provincia1.setActivo(Estado.ACTIVO);
+        provinciaRepository.save(provincia1);
+
+        Provincia provincia2 = new Provincia();
+        provincia2.setNombre("Bolivar");
+        provincia2.setActivo(Estado.ACTIVO);
+        provinciaRepository.save(provincia2);
+
+        Provincia provincia3 = new Provincia();
+        provincia3.setNombre("Cañar");
+        provincia3.setActivo(Estado.ACTIVO);
+        provinciaRepository.save(provincia3);
+
+
 
         return generadorRespuesta.buildResponse(
                 true,

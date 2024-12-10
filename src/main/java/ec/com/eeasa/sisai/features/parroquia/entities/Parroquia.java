@@ -1,9 +1,12 @@
-package ec.com.eeasa.sisai.features.sectores.entities;
+package ec.com.eeasa.sisai.features.parroquia.entities;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import ec.com.eeasa.sisai.features.canton.entities.Canton;
+
 import java.time.Instant;
 
 @Getter

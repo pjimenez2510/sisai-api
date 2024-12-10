@@ -1,7 +1,7 @@
 package ec.com.eeasa.sisai.features.rol_permiso.dtos;
 
 import ec.com.eeasa.sisai.features.rol_permiso.entities.RolPermiso;
-import lombok.Data;
+import lombok.Value;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 /**
  * DTO for {@link RolPermiso}
  */
-@Data
+@Value
 public class ActualizarRolPermisoDto implements Serializable {
     @NotEmpty(message = "La lista de permisos no puede estar vacía")
     @Size(min = 1, message = "Debe seleccionar al menos un permiso")

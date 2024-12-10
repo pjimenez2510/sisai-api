@@ -1,8 +1,8 @@
 package ec.com.eeasa.sisai.features.contratos.entities;
 
-import ec.com.eeasa.sisai.features.sectores.entities.Canton;
-import ec.com.eeasa.sisai.features.sectores.entities.Parroquia;
-import ec.com.eeasa.sisai.features.sectores.entities.Provincia;
+import ec.com.eeasa.sisai.features.canton.entities.Canton;
+import ec.com.eeasa.sisai.features.parroquia.entities.Parroquia;
+import ec.com.eeasa.sisai.features.provincia.entities.Provincia;
 import lombok.Getter;
 import lombok.Setter;
 

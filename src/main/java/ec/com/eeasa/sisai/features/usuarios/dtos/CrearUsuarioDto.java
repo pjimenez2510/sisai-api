@@ -1,7 +1,7 @@
 package ec.com.eeasa.sisai.features.usuarios.dtos;
 
 import ec.com.eeasa.sisai.features.usuarios.entities.Usuario;
-import lombok.Data;
+import lombok.Value;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * DTO for {@link Usuario}
  */
-@Data
+@Value
 public class CrearUsuarioDto implements Serializable {
     @NotNull(message = "El nombre es requerido")
     String nombres;

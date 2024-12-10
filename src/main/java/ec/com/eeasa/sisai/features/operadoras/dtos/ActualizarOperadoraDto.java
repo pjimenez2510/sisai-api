@@ -18,12 +18,12 @@ import javax.validation.constraints.Size;
  */
 @Value
 public class ActualizarOperadoraDto implements Serializable {
-    @NotNull(message = "El nombre es requerido requerido")
+    @NotNull(message = "El nombre es requerido")
     @NotBlank(message = "El nombre no debe estar en blanco")
     @Size(min = 1, max = 100, message = "EL nombre debe tener entre 1 y 100 caracteres")
     String nombre;
 
-    @NotNull(message = "El ruc es requerido requerido")
+    @NotNull(message = "El ruc es requerido")
     @NotBlank(message = "El ruc no debe estar en blanco")
     @CedulaEcuatoriana(message = "El ruc no es valido")
     String ruc;
@@ -35,9 +35,9 @@ public class ActualizarOperadoraDto implements Serializable {
     @TelefonoValido(message = "El teléfono no es valido")
     String telefono2;
 
-    @NotNull(message = "La dirección es requerida requerido")
+    @NotNull(message = "La dirección es requerida")
     @NotBlank(message = "La dirección no debe estar en blanco")
-    @Size(min = 5, max = 250, message = "La dirección debe tener entre 1 y 250 caracteres")
+    @Size(min = 5, max = 250, message = "La dirección debe tener entre 5 y 250 caracteres")
     String direccion;
 
     String observacion;

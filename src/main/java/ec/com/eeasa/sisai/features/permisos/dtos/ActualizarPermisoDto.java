@@ -1,7 +1,7 @@
 package ec.com.eeasa.sisai.features.permisos.dtos;
 
 import ec.com.eeasa.sisai.features.permisos.entities.Permiso;
-import lombok.Data;
+import lombok.Value;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * DTO for {@link Permiso}
  */
-@Data
+@Value
 public class ActualizarPermisoDto implements Serializable {
     @NotNull(message = "El recurso es requerido")
     @NotBlank(message = "El recurso no debe estar en blanco")
