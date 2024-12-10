@@ -9,14 +9,15 @@ import lombok.AllArgsConstructor;
 
 @Component
 @AllArgsConstructor
-public class ValidarEliminarTipoContrato extends ValidacionBase<Long> {
+public class ValidarContratosAsociadosTC extends ValidacionBase<Long> {
 
+    private final String DEFAULT_MESSAGE = "No se puede realizar la acción, el tipo de contrato con id %d tiene contratos asociados";
     private final ContratoRepository contratoRepository;
 
     @Override
-    public void validar(Long id) {
-        if (contratoRepository.existsByDictpCodigoTipoContrato_Id(id)) {
-            throw new Conflicto(String.format("No se puede eliminar el tipo de contrato con id %d porque tiene contratos asociados", id));
+    public void validar(Long idTipoContrato) {
+        if (contratoRepository.existsByDictpCodigoTipoContrato_Id(idTipoContrato)) {
+            throw new Conflicto(String.format(DEFAULT_MESSAGE, idTipoContrato));
         }
     }
 

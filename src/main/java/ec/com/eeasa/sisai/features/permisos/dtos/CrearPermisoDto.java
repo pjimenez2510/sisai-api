@@ -14,17 +14,17 @@ import java.io.Serializable;
 @Data
 public class CrearPermisoDto implements Serializable {
     @NotNull(message = "El recurso es requerido")
-    @NotBlank(message = "El rucurso no debe estar en blanco")
+    @NotBlank(message = "El recurso no debe estar en blanco")
     @Size(min = 1, max = 100, message = "El recurso debe tener entre 1 y 100 caracteres")
     String recurso;
 
-    @NotNull(message = "La accion es requerida")
-    @NotBlank(message = "La accion no debe estar en blanco")
-    @Size(min = 1, max = 100, message = "La accion debe tener entre 1 y 100 caracteres")
+    @NotNull(message = "La acción es requerida")
+    @NotBlank(message = "La acción no debe estar en blanco")
+    @Size(min = 1, max = 100, message = "La acción debe tener entre 1 y 100 caracteres")
     String accion;
 
-    @NotNull(message = "La descripcion es requerida")
-    @NotBlank(message = "La descripcion no debe estar en blanco")
-    @Size(min = 1, max = 100, message = "La descripcion debe tener entre 1 y 100 caracteres")
+    @NotNull(message = "La descripción es requerida")
+    @NotBlank(message = "La descripción no debe estar en blanco")
+    @Size(min = 1, max = 100, message = "La descripción debe tener entre 1 y 100 caracteres")
     String descripcion;
 }

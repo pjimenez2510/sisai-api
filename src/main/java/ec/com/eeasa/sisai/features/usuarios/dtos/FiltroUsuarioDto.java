@@ -14,19 +14,19 @@ public class FiltroUsuarioDto extends FiltroBase {
     @Parameter(description = "Apellido del usuario")
     private String apellidos;
 
-    @Parameter(description = "Cedula del usuario")
+    @Parameter(description = "Cédula del usuario")
     private String cedula;
 
     @Parameter(description = "Nombre de usuario")
     private String nombreUsuario;
 
-    @Parameter(description = "Correo electronico del usuario")
+    @Parameter(description = "Correo electrónico del usuario")
     private String email;
 
-    @Parameter(description = "Codigo unico del usuario")
+    @Parameter(description = "Código único del usuario")
     private String codigoUnico;
 
-    @Parameter(description = "Seccion del usuario")
+    @Parameter(description = "Sección del usuario")
     private String seccion;
 
     @Parameter(description = "Departamento del usuario")

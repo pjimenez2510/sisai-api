@@ -11,9 +11,9 @@ public class FiltroPermisoDto extends FiltroBase {
     @Parameter(description = "Recurso del permiso")
     private String recurso;
 
-    @Parameter(description = "Accion del permiso")
+    @Parameter(description = "Acción del permiso")
     private String accion;
 
-    @Parameter(description = "Descripcion del permiso")
+    @Parameter(description = "Descripción del permiso")
     private String descripcion;
 }

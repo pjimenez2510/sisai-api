@@ -1,6 +1,6 @@
 package ec.com.eeasa.sisai.features.tipo_contrato.services.impl;
 
-import ec.com.eeasa.sisai.features.tipo_contrato.validaciones.ValidarActualizarTipoContrato;
+import ec.com.eeasa.sisai.features.tipo_contrato.validaciones.ValidarActualizarTC;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import ec.com.eeasa.sisai.features.tipo_contrato.repositories.EspecificacionTipo
 import ec.com.eeasa.sisai.features.tipo_contrato.mappers.TipoContratoMapper;
 import ec.com.eeasa.sisai.features.tipo_contrato.repositories.TipoContratoRepository;
 import ec.com.eeasa.sisai.features.tipo_contrato.services.TipoContratoService;
-import ec.com.eeasa.sisai.features.tipo_contrato.validaciones.ValidarEliminarTipoContrato;
+import ec.com.eeasa.sisai.features.tipo_contrato.validaciones.ValidarEliminarTC;
 import ec.com.eeasa.sisai.shared.constantes.Estado;
 import ec.com.eeasa.sisai.shared.excepciones.RecursoNoEncontrado;
 import ec.com.eeasa.sisai.shared.utils.PaginacionUtils;
@@ -30,8 +30,8 @@ public class TipoContratoServiceImpl implements TipoContratoService {
 
     private final TipoContratoRepository tipoContratoRepository;
     private final TipoContratoMapper tipoContratoMapper;
-    private final ValidarEliminarTipoContrato validarEliminarTipoContrato;
-    private final ValidarActualizarTipoContrato validarActualizarTipoContrato;
+    private final ValidarEliminarTC validarEliminarTC;
+    private final ValidarActualizarTC validarActualizarTC;
 
     @Override
     @Transactional(readOnly = true)
@@ -67,7 +67,7 @@ public class TipoContratoServiceImpl implements TipoContratoService {
     @Auditable(tabla = Tablas.TIPO_CONTRATO, operacion = Operaciones.ACTUALIZAR)
     public TipoContratoDto actualizar(Long id, ActualizarTipoContratoDto dto) {
         TipoContrato tipoContrato = encontrarPorIdEntity(id);
-        validarActualizarTipoContrato.validar(tipoContrato);
+        validarActualizarTC.validar(tipoContrato);
         tipoContratoMapper.updateEntity(tipoContrato, dto);
         return tipoContratoMapper.toDTO(tipoContratoRepository.save(tipoContrato));
     }
@@ -76,7 +76,7 @@ public class TipoContratoServiceImpl implements TipoContratoService {
     @Transactional
     @Auditable(tabla = Tablas.TIPO_CONTRATO, operacion = Operaciones.ELIMINAR)
     public boolean eliminar(Long id) {
-        validarEliminarTipoContrato.validar(id);
+        validarEliminarTC.validar(id);
         TipoContrato tipoContrato = encontrarPorIdEntity(id);
         tipoContrato.setActivo(Estado.INACTIVO);
         TipoContrato inactivo = tipoContratoRepository.save(tipoContrato);

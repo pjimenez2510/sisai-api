@@ -17,7 +17,7 @@ public class CrearUsuarioDto implements Serializable {
     @NotNull(message = "El apellido es requerido")
     String apellidos;
 
-    @NotNull(message = "La cedula es requerida")
+    @NotNull(message = "La cédula es requerida")
     String cedula;
 
     @NotNull(message = "El nombre de usuario es requerido")
@@ -26,10 +26,10 @@ public class CrearUsuarioDto implements Serializable {
     @NotNull(message = "El email es requerido")
     String email;
 
-    @NotNull(message = "El codigo unico es requerido")
+    @NotNull(message = "El código único es requerido")
     String codigoUnico;
 
-    @NotNull(message = "La seccion es requerida")
+    @NotNull(message = "La sección es requerida")
     String seccion;
 
     @NotNull(message = "El departamento es requerido")

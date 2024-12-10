@@ -4,13 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.Instant;
+
+import ec.com.eeasa.sisai.features.auditoria.entities.DatosBaseAuditoria;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "DIST_OPE_RESPONSABLE", schema = "ROOTSISAI")
-public class Responsable {
+@AttributeOverrides({
+        @AttributeOverride(name = "creadoPor", column = @Column(name = "DORES_CREADO_POR")),
+        @AttributeOverride(name = "fechaCreacion", column = @Column(name = "DORES_FECHA_CREACION")),
+        @AttributeOverride(name = "modificadoPor", column = @Column(name = "DORES_MODIFICADO_POR")),
+        @AttributeOverride(name = "fechaModificacion", column = @Column(name = "DORES_FECHA_MODIFICACION"))
+})
+public class Responsable extends DatosBaseAuditoria {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEC_DIST_OPE_RESPONSABLE")
     @SequenceGenerator(name = "SEC_DIST_OPE_RESPONSABLE", sequenceName = "SEC_DIST_OPE_RESPONSABLE", allocationSize = 1)
@@ -18,34 +25,22 @@ public class Responsable {
     private Long id;
 
     @Column(name = "DORES_NOMBRES", nullable = false, length = 100)
-    private String doresNombres;
+    private String nombres;
 
     @Column(name = "DORES_APELLIDOS", nullable = false, length = 100)
-    private String doresApellidos;
+    private String apellidos;
 
     @Column(name = "DORES_EMAIL", nullable = false, length = 100)
-    private String doresEmail;
+    private String email;
 
     @Column(name = "DORES_TELEFONO", length = 15)
-    private String doresTelefono;
+    private String telefono;
 
     @Column(name = "DORES_ACTIVO", length = 20)
-    private String doresActivo;
+    private String activo;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "DISOP_CODIGO_OPERADORA", nullable = false)
-    private Operadora disopCodigoOperadora;
-
-    @Column(name = "DORES_CREADO_POR", length = 100)
-    private String doresCreadoPor;
-
-    @Column(name = "DORES_FECHA_CREACION")
-    private Instant doresFechaCreacion;
-
-    @Column(name = "DORES_MODIFICADO_POR", length = 100)
-    private String doresModificadoPor;
-
-    @Column(name = "DORES_FECHA_MODIFICACION")
-    private Instant doresFechaModificacion;
+    private Operadora codigoOperadora;
 
 }

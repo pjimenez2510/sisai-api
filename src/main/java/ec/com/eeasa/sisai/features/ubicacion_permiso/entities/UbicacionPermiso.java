@@ -1,4 +1,4 @@
-package ec.com.eeasa.sisai;
+package ec.com.eeasa.sisai.features.ubicacion_permiso.entities;
 
 import ec.com.eeasa.sisai.features.sectores.entities.Provincia;
 import ec.com.eeasa.sisai.features.usuarios.entities.Usuario;
